@@ -35,4 +35,9 @@ pipeline {
             }
         }
     }   
+    post {
+        success {
+            echo "Hello Genius All Stages build successfully"
+        }
+    }
 }

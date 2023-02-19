@@ -1,4 +1,4 @@
-def grv
+def gv
 pipeline
 {
     agent any
@@ -13,28 +13,28 @@ pipeline
             steps
             {
                 echo "<- welcome , this is init stage ->"
-                grv = load "script.groovy"
+                gv = load "script.groovy"
             }
         }
         stage("Build jar")
         {
             steps
             {
-                grv.buildJar()
+                gv.buildJar()
             }
         }
         stage("buildImage")
         {
             steps
             {
-                grv.buildImage()
+                gv.buildImage()
             }
         }
         stage("deploy")
         {
             steps
             {
-                grv.deployApp()
+                gv.deployApp()
             }
         }
         }

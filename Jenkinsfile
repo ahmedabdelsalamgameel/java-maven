@@ -1,43 +1,56 @@
-def gv
-
-pipeline {
+def grv
+pipeline
+{
     agent any
-    stages {
-        stage("init") {
-            steps {
-                script {
-                    gv = load "script.groovy"
-                }
+    tools
+    {
+        maven = 'maven-3.8'
+    }
+    stages
+    {
+        stage("init")
+        {
+            steps
+            {
+                echo "<- welcome , this is init stage ->"
+                grv = load "script.groovy"
             }
         }
-        stage("build jar") {
-            steps {
-                script {
-                    echo "building jar"
-                    //gv.buildJar()
-                }
+        stage("Build jar")
+        {
+            steps
+            {
+                grv.buildJar()
             }
         }
-        stage("build image") {
-            steps {
-                script {
-                    echo "building image"
-                    //gv.buildImage()
-                }
+        stage("buildImage")
+        {
+            steps
+            {
+                grv.buildImage()
             }
         }
-        stage("deploy") {
-            steps {
-                script {
-                    echo "deploying... , tmam kol 7aga full "
-                    //gv.deployApp()
-                }
+        stage("deploy")
+        {
+            steps
+            {
+                grv.deployApp()
             }
         }
-    }   
-    post {
-        success {
+        }
+    post
+    {
+        always
+        {
+            echo "this message will appear in all time you build!"
+        }
+        success
+        {
             echo "Hello Genius All Stages build successfully"
+        }
+        failure
+        {
+            echo "sorry there are some issues"
         }
     }
 }

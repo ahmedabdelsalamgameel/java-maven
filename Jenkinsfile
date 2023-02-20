@@ -44,7 +44,7 @@ pipeline
                     ])
                     {
                         sh " docker build -t ahmedabdelsalam19/test-app:javaMaven-2.0 . "
-                        sh " echo $PASSWD | docker login -u $USER --password-stdin "
+                        sh " echo ${PASSWD} | docker login -u ${USER} --password-stdin "
                         sh " docker push ahmedabdelsalam19/test-app:javaMaven-2.0 "
                     }
             }

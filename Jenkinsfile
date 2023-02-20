@@ -33,9 +33,11 @@ pipeline
         {
             steps
             {
+
                 script {
                     gv.buildImage()
-                        withCredentials([
+                }
+                withCredentials([
                         usernamePassword(credentials: 'Docker_repo',
                                             usernameVariable: USERNAME ,
                                             passwordVariable: PASSWORD)
@@ -45,7 +47,6 @@ pipeline
                         sh " echo $PASSWORD | docker login -u $USERNAME --password-stdin "
                         sh " docker push ahmedabdelsalam19/test-app:javaMaven-2.0 "
                     }
-                }
             }
         }
         stage("deploy")

@@ -29,7 +29,7 @@ pipeline
             steps
             {
 
-            withCredentials([usernamePassword(credentialsId: 'Docker-repo', passwordVariable: 'PASS', usernameVariable: 'USER')]) {
+            withCredentials([usernamePassword(credentialsId: 'Docker_repo', passwordVariable: 'PASS', usernameVariable: 'USER')]) {
                 
                 sh 'docker build -t ahmedabdelsalam19/test-app:javaMaven-2.0 .'
                 sh "echo $PASS | docker login -u $USER --password-stdin"

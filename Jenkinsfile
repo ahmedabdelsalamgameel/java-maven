@@ -1,10 +1,11 @@
-def grv
+//def gv
 pipeline
 {
     agent any
-    tools
-    {
-        maven = 'maven-3.8'
+    tools {
+
+        maven 'maven-3.8'
+    
     }
     stages
     {
@@ -12,29 +13,36 @@ pipeline
         {
             steps
             {
-                echo "<- welcome , this is init stage ->"
-                grv = load "script.groovy"
+              echo "Hello"
             }
         }
         stage("Build jar")
         {
             steps
             {
-                grv.buildJar()
+                sh "mvn package"
+            
             }
         }
         stage("buildImage")
         {
             steps
             {
-                grv.buildImage()
+
+            withCredentials([usernamePassword(credentialsId: 'Docker_repo', passwordVariable: 'PASS', usernameVariable: 'USER')]) {
+                
+                sh 'docker build -t ahmedabdelsalam19/test-app:javaMaven-2.0 .'
+                sh "echo $PASS | docker login -u $USER --password-stdin"
+                sh 'docker push ahmedabdelsalam19/test-app:javaMaven-2.0'
+
             }
+        }
         }
         stage("deploy")
         {
             steps
             {
-                grv.deployApp()
+                echo "thank you"
             }
         }
         }

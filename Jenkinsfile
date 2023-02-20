@@ -20,7 +20,7 @@ pipeline
         {
             steps
             {
-                grv.buildJar()
+                gv.buildJar()
             }
         }
         stage("buildImage")

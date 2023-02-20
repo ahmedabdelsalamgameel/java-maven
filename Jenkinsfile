@@ -29,16 +29,12 @@ pipeline
             steps
             {
 
-                withCredentials([
-                        usernamePassword(credentials: 'Docker_repo',
-                                            usernameVariable: USER ,
-                                            passwordVariable: PASSWD)
-                    ])
-                    {
-                        sh " docker build -t ahmedabdelsalam19/test-app:javaMaven-2.0 . "
-                        sh " echo ${PASSWD} | docker login -u ${USER} --password-stdin "
-                        sh " docker push ahmedabdelsalam19/test-app:javaMaven-2.0 "
-                    }
+            withCredentials([usernamePassword(credentialsId: 'Docker-repo', passwordVariable: 'PASS', usernameVariable: 'USER')]) {
+                
+                sh 'docker build -t ahmedabdelsalam19/test-app:javaMaven-2.0 .'
+                sh "echo $PASS | docker login -u $USER --password-stdin"
+                sh 'docker push ahmedabdelsalam19/test-app:javaMaven-2.0'
+
             }
         }
         stage("deploy")
@@ -64,4 +60,6 @@ pipeline
             echo "sorry there are some issues"
         }
     }
+}
+
 }

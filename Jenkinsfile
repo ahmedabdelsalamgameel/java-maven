@@ -8,29 +8,38 @@ pipeline
         {
             steps
             {
-                echo "<- welcome , this is init stage ->"
-                gv = load "script.groovy"
+                script {
+                    echo "<- welcome , this is init stage ->"
+                    gv = load "script.groovy"
+                }
             }
         }
         stage("Build jar")
         {
             steps
             {
-                gv.buildJar()
+                script {
+                    gv.buildJar()
+
+                }
             }
         }
         stage("buildImage")
         {
             steps
             {
-                gv.buildImage()
+                script {
+                    gv.buildImage()
+                }
             }
         }
         stage("deploy")
         {
             steps
             {
-                gv.deployApp()
+                script {
+                    gv.deployApp()
+                }
             }
         }
         }

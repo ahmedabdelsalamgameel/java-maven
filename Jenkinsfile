@@ -23,6 +23,7 @@ pipeline
         {
             steps
             {
+                sh "mvn package"
                 script {
                     
                     //gv.buildJar()

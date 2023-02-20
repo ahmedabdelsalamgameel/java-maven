@@ -39,12 +39,12 @@ pipeline
                 }
                 withCredentials([
                         usernamePassword(credentials: 'Docker_repo',
-                                            usernameVariable: USERNAME ,
-                                            passwordVariable: PASSWORD)
+                                            usernameVariable: USER ,
+                                            passwordVariable: PASSWD)
                     ])
                     {
                         sh " docker build -t ahmedabdelsalam19/test-app:javaMaven-2.0 . "
-                        sh " echo $PASSWORD | docker login -u $USERNAME --password-stdin "
+                        sh " echo $PASSWD | docker login -u $USER --password-stdin "
                         sh " docker push ahmedabdelsalam19/test-app:javaMaven-2.0 "
                     }
             }

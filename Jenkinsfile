@@ -13,10 +13,7 @@ pipeline
         {
             steps
             {
-                script {
-                    echo "<- welcome , this is init stage ->"
-                    //gv = load "script.groovy"
-                }
+              echo "Hello"
             }
         }
         stage("Build jar")
@@ -24,11 +21,7 @@ pipeline
             steps
             {
                 sh "mvn package"
-                script {
-                    
-                    //gv.buildJar()
-
-                }
+            
             }
         }
         stage("buildImage")
@@ -36,9 +29,6 @@ pipeline
             steps
             {
 
-                script {
-                    //gv.buildImage()
-                }
                 withCredentials([
                         usernamePassword(credentials: 'Docker_repo',
                                             usernameVariable: USER ,
@@ -55,9 +45,7 @@ pipeline
         {
             steps
             {
-                script {
-                    //gv.deployApp()
-                }
+                echo "thank you"
             }
         }
         }

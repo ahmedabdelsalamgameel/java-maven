@@ -1,4 +1,4 @@
-def gv
+//def gv
 pipeline
 {
     agent any
@@ -15,7 +15,7 @@ pipeline
             {
                 script {
                     echo "<- welcome , this is init stage ->"
-                    gv = load "script.groovy"
+                    //gv = load "script.groovy"
                 }
             }
         }
@@ -24,7 +24,8 @@ pipeline
             steps
             {
                 script {
-                    gv.buildJar()
+                    
+                    //gv.buildJar()
 
                 }
             }
@@ -35,7 +36,7 @@ pipeline
             {
 
                 script {
-                    gv.buildImage()
+                    //gv.buildImage()
                 }
                 withCredentials([
                         usernamePassword(credentials: 'Docker_repo',
@@ -54,7 +55,7 @@ pipeline
             steps
             {
                 script {
-                    gv.deployApp()
+                    //gv.deployApp()
                 }
             }
         }

@@ -14,6 +14,7 @@ pipeline
             steps
             {
               echo "Hello"
+              echo "test integration"
             }
         }
         stage("Build jar")
